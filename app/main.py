@@ -13,6 +13,12 @@ class Todo(BaseModel):
     completed: bool
 
 
+class CreateTodo(BaseModel):
+    userId: int
+    title: str
+    completed: bool
+
+
 API_URL = "https://jsonplaceholder.typicode.com/todos"
 
 
@@ -33,5 +39,13 @@ async def list_todos():
 async def get_todo_by_id(todo_id: int):
     async with httpx.AsyncClient() as client:
         response = await client.get(f"{API_URL}/{todo_id}")
+        response.raise_for_status()
+        return response.json()
+
+
+@app.post("/todos/", status_code=201, response_model=Todo)
+async def create_todo(todo: CreateTodo):
+    async with httpx.AsyncClient() as client:
+        response = await client.post(API_URL, json=todo.model_dump())
         response.raise_for_status()
         return response.json()
