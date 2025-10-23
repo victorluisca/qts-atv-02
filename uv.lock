@@ -510,6 +510,7 @@ dependencies = [
     { name = "black" },
     { name = "fastapi", extra = ["standard"] },
     { name = "flake8" },
+    { name = "httpx" },
     { name = "pytest" },
 ]
 
@@ -518,6 +519,7 @@ requires-dist = [
     { name = "black", specifier = ">=25.9.0" },
     { name = "fastapi", extras = ["standard"], specifier = ">=0.119.1" },
     { name = "flake8", specifier = ">=7.3.0" },
+    { name = "httpx", specifier = ">=0.28.1" },
     { name = "pytest", specifier = ">=8.4.2" },
 ]
 
